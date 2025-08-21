@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artella - Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #94c9b9;
+    }
+
+    header {
+      background-color: #f5dc99;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    header a {
+      font-size: 24px;
+      color: #8c5c6b;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+    }
+
+    .logo img {
+      height: 100px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 200px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      padding: 15px 20px;
+      border-radius: 25px;
+      border: none;
+      width: 400px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-family: 'Georgia', serif;
+    }
+
+    label {
+      align-self: flex-start;
+      margin-left: 55px;
+      margin-bottom: -15px;
+      font-size: 18px;
+      color: #8c5c6b;
+    }
+
+    .reset-link {
+      margin-bottom: 30px;
+    }
+
+    .reset-link a {
+      color: #8c5c6b;
+      text-decoration: underline;
+      font-size: 18px;
+    }
+
+    .login-button {
+      background-color: #f68088;
+      color: white;
+      font-size: 30px;
+      font-family: 'Georgia', serif;
+      padding: 10px 50px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background-color: #e26770;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#">Entrar</a>
+  </header>
+
+  <div class="logo">
+    <img src="https://via.placeholder.com/150x100?text=Artella+Logo" alt="Artella logo">
+  </div>
+
+  <div class="container">
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" placeholder="Digite seu e-mail">
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" placeholder="Digite sua senha">
+
+    <div class="reset-link">
+      <a href="#">Redefinir senha</a>
+    </div>
+
+    <button class="login-button">Entrar</button>
+  </div>
+
+</body>
+</html>
