@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Trabalhos - Artella</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function carregarTrabalhos() {
+      const user = localStorage.getItem("usuarioLogado");
+      if (!user) {
+        alert("Você precisa estar logado para acessar esta página.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      let trabalhos = JSON.parse(localStorage.getItem("trabalhos")) || [];
+      const lista = document.getElementById("lista-trabalhos");
+      lista.innerHTML = "";
+
+      if (trabalhos.length === 0) {
+        lista.innerHTML = "<p>Nenhum trabalho publicado ainda.</p>";
+      } else {
+        trabalhos.forEach((t) => {
+          lista.innerHTML += `
+            <div class="card">
+              <img src="${t.imagem}" alt="${t.titulo}" class="img-trabalho">
+              <h3>${t.titulo}</h3>
+              <p><strong>Autor:</strong> ${t.autor}</p>
+              <p><strong>${t.semana}</strong></p>
+              <p>${t.descricao}</p>
+            </div>
+          `;
+        });
+      }
+    }
+  </script>
+</head>
+<body class="verde-bg" onload="carregarTrabalhos()">
+<header class="header-rosa">
+    <img src="logo.png" alt="Logo Artella" class="logo-esq">
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="desafios.html">Desafios</a>
+        <a href="trabalhos.html">Publicar</a>
+        <a href="perfil.html">Perfil</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Trabalhos Enviados</h2>
+    <div id="lista-trabalhos"></div>
+</div>
+</body>
+</html>
+
+<script>
+    // bloqueio de acesso
+    window.onload = function() {
+      const user = localStorage.getItem("usuarioLogado");
+      if (!user) {
+        alert("Você precisa estar logado para acessar esta página.");
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+  

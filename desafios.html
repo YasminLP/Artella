@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafios - Artella</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function carregarDesafios() {
+      const user = localStorage.getItem("usuarioLogado");
+      if (!user) {
+        alert("Você precisa estar logado para acessar esta página.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      let desafios = JSON.parse(localStorage.getItem("desafios")) || [];
+      const lista = document.getElementById("lista-desafios");
+      lista.innerHTML = "";
+
+      if (desafios.length === 0) {
+        lista.innerHTML = "<p>Nenhum desafio disponível ainda.</p>";
+      } else {
+        desafios.forEach((d, i) => {
+          lista.innerHTML += `
+            <div class="card desafio-card">
+              <h3>Semana ${i + 1}</h3>
+              <h4>${d.titulo}</h4>
+              <p>${d.descricao}</p>
+              <button class="btn-rosa">Ver Trabalhos</button>
+            </div>
+          `;
+        });
+      }
+    }
+  </script>
+</head>
+<body class="verde-bg" onload="carregarDesafios()">
+<header class="header-rosa">
+    <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-09-04 140455.png" alt="Logo Artella" class="logo-esq">
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="trabalhos.html">Trabalhos</a>
+        <a href="perfil.html">Perfil</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Desafios Semanais</h2>
+    <div id="lista-desafios"></div>
+</div>
+</body>
+</html>
+
+
+<script>
+  // bloqueio de acesso
+  window.onload = function() {
+    const user = localStorage.getItem("usuarioLogado");
+    if (!user) {
+      alert("Você precisa estar logado para acessar esta página.");
+      window.location.href = "login.html";
+    }
+  }
+</script>

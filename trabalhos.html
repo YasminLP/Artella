@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Publicar Trabalho - Artella</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function salvarTrabalho(event) {
+      event.preventDefault();
+
+      const user = JSON.parse(localStorage.getItem("usuarioLogado"));
+      if (!user) {
+        alert("Você precisa estar logado para publicar um trabalho.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const titulo = document.getElementById("titulo").value.trim();
+      const descricao = document.getElementById("descricao").value.trim();
+      const semana = document.getElementById("semana").value;
+      const imagemInput = document.getElementById("imagem");
+
+      if (titulo && descricao && semana && imagemInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          let trabalhos = JSON.parse(localStorage.getItem("trabalhos")) || [];
+
+          const novoTrabalho = {
+            titulo,
+            descricao,
+            semana,
+            autor: user.usuario || user.nome,
+            imagem: e.target.result // salva imagem como base64
+          };
+
+          trabalhos.push(novoTrabalho);
+          localStorage.setItem("trabalhos", JSON.stringify(trabalhos));
+
+          alert("Trabalho publicado com sucesso!");
+          window.location.href = "ver_trabalhos.html"; // 🔹 redireciona
+        };
+        reader.readAsDataURL(imagemInput.files[0]);
+      } else {
+        alert("Preencha todos os campos e selecione uma imagem!");
+      }
+    }
+  </script>
+</head>
+<body class="verde-bg">
+<header class="header-rosa">
+    <img src="logo.png" alt="Logo Artella" class="logo-esq">
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="desafios.html">Desafios</a>
+        <a href="ver_trabalhos.html">Ver Trabalhos</a>
+        <a href="perfil.html">Perfil</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Publicar Trabalho</h2>
+    <form id="form-trabalho" onsubmit="salvarTrabalho(event)">
+        <input type="text" id="titulo" placeholder="Título" required>
+        <textarea id="descricao" placeholder="Descrição" required></textarea>
+        <select id="semana" required>
+            <option value="">Selecione a Semana</option>
+            <option value="Semana 1">Semana 1</option>
+            <option value="Semana 2">Semana 2</option>
+            <option value="Semana 3">Semana 3</option>
+        </select>
+        <input type="file" id="imagem" accept="image/*" required>
+        <button type="submit" class="btn-rosa">Postar</button>
+    </form>
+</div>
+</body>
+</html>
+
+
+<script>
+  // bloqueio de acesso
+  window.onload = function() {
+    const user = localStorage.getItem("usuarioLogado");
+    if (!user) {
+      alert("Você precisa estar logado para acessar esta página.");
+      window.location.href = "login.html";
+    }
+  }
+</script>

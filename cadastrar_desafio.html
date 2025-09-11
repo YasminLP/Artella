@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cadastrar desafio · Artella</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="header">
+  <nav class="nav container">
+    <a class="brand" href="index.html"><span class="logo">A</span> <span>Artella</span></a>
+    <div class="menu">
+      <a href="desafios.html">Ver Desafios</a>
+      <a href="trabalhos.html">Trabalhos</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="login.html">Entrar</a>
+      <a class="btn" href="criar_conta.html">Criar Conta</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Cadastrar desafio</h1>
+  <form class="form" action="#" method="post">
+    <div>
+      <label for="titulo">Título:</label>
+      <input class="input" id="titulo" name="titulo" placeholder="Ex.: Ilustração minimalista" required>
+    </div>
+    <div>
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" name="descricao" placeholder="Detalhes do desafio..." required></textarea>
+    </div>
+    <div>
+      <label for="semana">Semana:</label>
+      <select id="semana" name="semana" class="input">
+        <option>Semana 1</option>
+        <option>Semana 2</option>
+        <option>Semana 3</option>
+      </select>
+    </div>
+    <button class="btn" type="submit">Postar</button>
+  </form>
+</main>
+
+<footer class="footer">© 2025 Artella — protótipo estático inspirado no wireframe do usuário.</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

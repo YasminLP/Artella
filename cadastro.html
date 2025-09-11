@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Conta - Artella</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="login.html">Entrar</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Criar Conta</h2>
+    <form>
+      <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-09-01 132919.png" alt="Logo Artella">
+       
+    </form>
+</div>
+</body>
+</html>
+
+
+
+<script>
+  function cadastrar(event) {
+    event.preventDefault();
+    const email = document.getElementById("cadEmail").value;
+    const senha = document.getElementById("cadSenha").value;
+
+    if (email && senha) {
+      localStorage.setItem("usuarioLogado", email);
+      alert("Conta criada com sucesso!");
+      window.location.href = "index.html";
+    } else {
+      alert("Preencha todos os campos corretamente.");
+    }
+  }
+</script>
+
+
+<script>
+function cadastrar(event) {
+  event.preventDefault();
+
+  const nome = document.getElementById("cadNome").value;
+  const email = document.getElementById("cadEmail").value;
+  const usuario = document.getElementById("cadUsuario").value;
+  const senha = document.getElementById("cadSenha").value;
+  const confSenha = document.getElementById("cadConfSenha").value;
+
+  if (senha !== confSenha) {
+    alert("As senhas não coincidem!");
+    return;
+  }
+
+  // pega os usuários já cadastrados
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  // verifica se já existe um usuário com o mesmo email
+  const existe = usuarios.find(u => u.email === email);
+  if (existe) {
+    alert("Já existe uma conta com este e-mail.");
+    return;
+  }
+
+  // cria objeto usuário
+  const novoUsuario = { nome, email, usuario, senha };
+
+  // salva no array e no LocalStorage
+  usuarios.push(novoUsuario);
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+  // loga automaticamente
+  localStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
+
+  alert("Conta criada com sucesso!");
+  window.location.href = "index.html";
+}
+</script>
+
+<form onsubmit="cadastrar(event)">
+  <input type="text" id="cadNome" placeholder="Nome" required>
+  <input type="email" id="cadEmail" placeholder="E-mail" required>
+  <input type="text" id="cadUsuario" placeholder="Nome de usuário" required>
+  <input type="password" id="cadSenha" placeholder="Senha" required>
+  <input type="password" id="cadConfSenha" placeholder="Confirmar senha" required>
+  <button type="submit">Criar</button>
+</form>
+
+<script>
+function cadastrar(event) {
+  event.preventDefault();
+
+  const nome = document.getElementById("cadNome").value;
+  const email = document.getElementById("cadEmail").value;
+  const usuario = document.getElementById("cadUsuario").value;
+  const senha = document.getElementById("cadSenha").value;
+  const confSenha = document.getElementById("cadConfSenha").value;
+
+  if (senha !== confSenha) {
+    alert("As senhas não coincidem!");
+    return;
+  }
+
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const existe = usuarios.find(u => u.email === email);
+  if (existe) {
+    alert("Já existe uma conta com este e-mail.");
+    return;
+  }
+
+  const novoUsuario = { nome, email, usuario, senha };
+  usuarios.push(novoUsuario);
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+  alert("Conta criada com sucesso! Faça login para continuar.");
+  window.location.href = "login.html"; // 🔹 vai para login
+}
+</script>

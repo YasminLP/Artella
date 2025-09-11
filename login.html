@@ -1,116 +1,90 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artella - Login</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #94c9b9;
-    }
-
-    header {
-      background-color: #f5dc99;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    header a {
-      font-size: 24px;
-      color: #8c5c6b;
-      text-decoration: none;
-      margin-right: 10px;
-    }
-
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 40px;
-    }
-
-    .logo img {
-      height: 100px;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 200px;
-    }
-
-    input[type="email"],
-    input[type="password"] {
-      padding: 15px 20px;
-      border-radius: 25px;
-      border: none;
-      width: 400px;
-      margin-bottom: 20px;
-      font-size: 18px;
-      font-family: 'Georgia', serif;
-    }
-
-    label {
-      align-self: flex-start;
-      margin-left: 55px;
-      margin-bottom: -15px;
-      font-size: 18px;
-      color: #8c5c6b;
-    }
-
-    .reset-link {
-      margin-bottom: 30px;
-    }
-
-    .reset-link a {
-      color: #8c5c6b;
-      text-decoration: underline;
-      font-size: 18px;
-    }
-
-    .login-button {
-      background-color: #f68088;
-      color: white;
-      font-size: 30px;
-      font-family: 'Georgia', serif;
-      padding: 10px 50px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .login-button:hover {
-      background-color: #e26770;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Entrar - Artella</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-bg">
+<header class="header-bege">
+    <a href="cadastro.html">Entrar</a>
+</header>
 
-  <header>
-    <a href="#">Entrar</a>
-  </header>
+<div class="container">
+    <!-- Espaço para logo -->
+    <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-08-28 140330.png" alt="Logo Artella" class="logo">
 
-  <div class="logo">
-    <img src="https://via.placeholder.com/150x100?text=Artella+Logo" alt="Artella logo">
-  </div>
-
-  <div class="container">
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" placeholder="Digite seu e-mail">
-
-    <label for="senha">Senha:</label>
-    <input type="password" id="senha" placeholder="Digite sua senha">
-
-    <div class="reset-link">
-      <a href="#">Redefinir senha</a>
-    </div>
-
-    <button class="login-button">Entrar</button>
-  </div>
-
+    <form>
+       
+    </form>
+</div>
 </body>
 </html>
+
+
+<script>
+function login(event) {
+  event.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
+
+  // simplificado: apenas verifica se não está vazio
+  if (email && senha) {
+    localStorage.setItem("usuarioLogado", email); // guarda sessão
+    alert("Login realizado com sucesso!");
+    window.location.href = "index.html";
+  } else {
+    alert("Preencha os campos corretamente.");
+  }
+}
+</script>
+
+
+<script>
+function login(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
+
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  // procura usuário cadastrado
+  const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+
+  if (usuario) {
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+    alert("Login realizado com sucesso!");
+    window.location.href = "index.html";
+  } else {
+    alert("E-mail ou senha inválidos!");
+  }
+}
+</script>
+
+<form onsubmit="login(event)">
+  <input type="email" id="loginEmail" placeholder="E-mail" required>
+  <input type="password" id="loginSenha" placeholder="Senha" required>
+  <a href="#" class="reset-link">Redefinir senha</a>
+  <button type="submit" class="btn-rosa">Entrar</button>
+</form>
+
+<script>
+function login(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
+
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+
+  if (usuario) {
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+    alert("Login realizado com sucesso!");
+    window.location.href = "desafios.html"; // 🔹 vai direto para desafios
+  } else {
+    alert("E-mail ou senha inválidos!");
+  }
+}
+</script>
