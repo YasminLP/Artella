@@ -26,7 +26,7 @@
               <h3>Semana ${i + 1}</h3>
               <h4>${d.titulo}</h4>
               <p>${d.descricao}</p>
-              <button class="btn-rosa">Ver Trabalhos</button>
+              <button class="btn-rosa" onclick="window.location.href='ver_trabalhos.html'">Ver Trabalhos</button>
             </div>
           `;
         });
@@ -36,29 +36,17 @@
 </head>
 <body class="verde-bg" onload="carregarDesafios()">
 <header class="header-rosa">
-    <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-09-04 140455.png" alt="Logo Artella" class="logo-esq">
-    <nav>
-        <a href="index.html">Início</a>
-        <a href="trabalhos.html">Trabalhos</a>
-        <a href="perfil.html">Perfil</a>
-    </nav>
+  <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-09-04 140455.png" alt="Logo Artella" class="logo-esq">
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="trabalhos.html">Publicar Trabalho</a>
+    <a href="perfil.html">Perfil</a>
+  </nav>
 </header>
 
 <div class="container">
-    <h2>Desafios Semanais</h2>
-    <div id="lista-desafios"></div>
+  <h2>Desafios Semanais</h2>
+  <div id="lista-desafios"></div>
 </div>
 </body>
 </html>
-
-
-<script>
-  // bloqueio de acesso
-  window.onload = function() {
-    const user = localStorage.getItem("usuarioLogado");
-    if (!user) {
-      alert("Você precisa estar logado para acessar esta página.");
-      window.location.href = "login.html";
-    }
-  }
-</script>

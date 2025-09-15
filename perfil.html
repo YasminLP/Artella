@@ -4,39 +4,89 @@
   <meta charset="UTF-8">
   <title>Perfil - Artella</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    function carregarPerfil() {
+      const user = JSON.parse(localStorage.getItem("usuarioLogado"));
+      if (!user) {
+        alert("Você precisa estar logado para acessar esta página.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Exibe dados básicos
+      document.getElementById("nomeUsuario").textContent = user.usuario || user.nome;
+      document.getElementById("emailUsuario").textContent = user.email;
+
+      // Exibe desafios cadastrados por admin
+      let desafios = JSON.parse(localStorage.getItem("desafios")) || [];
+      const listaDesafios = document.getElementById("meus-desafios");
+      listaDesafios.innerHTML = "";
+
+      if (desafios.length === 0) {
+        listaDesafios.innerHTML = "<p>Nenhum desafio publicado.</p>";
+      } else {
+        desafios.forEach((d, i) => {
+          listaDesafios.innerHTML += `
+            <div class="card desafio-card">
+              <h3>Semana ${i + 1}</h3>
+              <h4>${d.titulo}</h4>
+              <p>${d.descricao}</p>
+            </div>
+          `;
+        });
+      }
+
+      // Exibe trabalhos do usuário logado
+      let trabalhos = JSON.parse(localStorage.getItem("trabalhos")) || [];
+      const listaTrabalhos = document.getElementById("meus-trabalhos");
+      listaTrabalhos.innerHTML = "";
+
+      const meus = trabalhos.filter(t => t.autor === (user.usuario || user.nome));
+
+      if (meus.length === 0) {
+        listaTrabalhos.innerHTML = "<p>Nenhum trabalho enviado.</p>";
+      } else {
+        meus.forEach((t) => {
+          listaTrabalhos.innerHTML += `
+            <div class="card">
+              ${t.imagem ? `<img src="${t.imagem}" alt="${t.titulo}" class="img-trabalho">` : ""}
+              <h3>${t.titulo}</h3>
+              <p><strong>${t.semana}</strong></p>
+              <p>${t.descricao}</p>
+            </div>
+          `;
+        });
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("usuarioLogado");
+      window.location.href = "index.html";
+    }
+  </script>
 </head>
-<body class="perfil-bg">
+<body class="perfil-bg" onload="carregarPerfil()">
 <header class="header-rosa">
-    <img src="logo.png" alt="Logo Artella" class="logo-esq">
+  <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-09-04 140455.png" alt="Logo Artella" class="logo-esq">
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="desafios.html">Desafios</a>
+    <a href="trabalhos.html">Publicar Trabalho</a>
+    <a href="ver_trabalhos.html">Ver Trabalhos</a>
+    <button onclick="logout()" class="btn-rosa">Sair</button>
+  </nav>
 </header>
 
-<div class="perfil-container">
-    <!-- Coluna esquerda -->
-    <div class="perfil-info">
-        <div class="user-icon">
-            <span class="camera-icon">📷</span>
-        </div>
-        <input type="text" value="Nome de Usuário" class="nome-usuario" readonly>
-    </div>
+<div class="container">
+  <h2>Perfil do Usuário</h2>
+  <p><strong>Usuário:</strong> <span id="nomeUsuario"></span></p>
+  <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
 
-    <!-- Coluna direita com botões -->
-    <div class="perfil-actions">
-        <a href="ver-trabalhos.html" class="btn-verde">Ver Trabalhos</a>
-        <a href="desafios.html" class="btn-verde">Ver Desafios</a>
-    </div>
-</div>
+  <h3>📌 Meus Desafios</h3>
+  <div id="meus-desafios"></div>
 
-<!-- Cards de desafios/trabalhos -->
-<div class="cards-container">
-    <div class="card desafio-card">
-        <h3>Semana 1:</h3>
-        <p>Desafio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dapibus urna sit amet felis congue rutrum.</p>
-    </div>
-
-    <div class="card imagem-card">
-        <h3>Semana 1:</h3>
-        <img src="placeholder.png" alt="Imagem do trabalho">
-    </div>
+  <h3>🎨 Meus Trabalhos</h3>
+  <div id="meus-trabalhos"></div>
 </div>
 </body>
 </html>

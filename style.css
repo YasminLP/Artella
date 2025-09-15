@@ -461,3 +461,56 @@ header nav a:hover {
     border-radius: 10px;
     margin-bottom: 15px;
 }
+
+/*trabalho ver*/
+.card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card h3, .card h4 {
+  margin-top: 10px;
+  color: #e76a7a; /* rosa */
+}
+
+.card p {
+  margin: 6px 0;
+  color: #5a3d3d;
+}
+
+.img-trabalho {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.desafio-card {
+  border-left: 8px solid #f47b8b;
+  text-align: left;
+}
+
+/*perfil atualizado*/
+/* Seções do perfil */
+#meus-desafios, #meus-trabalhos {
+  margin-top: 20px;
+}
+
+/* Botão sair no menu */
+nav button {
+  border: none;
+  background: #f47b8b;
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: #e76a7a;
+}
