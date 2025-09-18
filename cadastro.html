@@ -57,24 +57,23 @@ function cadastrar(event) {
     return;
   }
 
-  // pega os usuários já cadastrados
+  //usuários já cadastrados
   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  // verifica se já existe um usuário com o mesmo email
+  // verifica email
   const existe = usuarios.find(u => u.email === email);
   if (existe) {
     alert("Já existe uma conta com este e-mail.");
     return;
   }
 
-  // cria objeto usuário
   const novoUsuario = { nome, email, usuario, senha };
 
-  // salva no array e no LocalStorage
+ 
   usuarios.push(novoUsuario);
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-  // loga automaticamente
+  //login automatico
   localStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
 
   alert("Conta criada com sucesso!");
@@ -119,6 +118,6 @@ function cadastrar(event) {
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
   alert("Conta criada com sucesso! Faça login para continuar.");
-  window.location.href = "login.html"; // 🔹 vai para login
+  window.location.href = "login.html"; 
 }
 </script>

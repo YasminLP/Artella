@@ -11,7 +11,7 @@
 </header>
 
 <div class="container">
-    <!-- Espaço para logo -->
+    
     <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-08-28 140330.png" alt="Logo Artella" class="logo">
 
     <form>
@@ -28,9 +28,9 @@ function login(event) {
   const email = document.getElementById("loginEmail").value;
   const senha = document.getElementById("loginSenha").value;
 
-  // simplificado: apenas verifica se não está vazio
+  //vazio ou não
   if (email && senha) {
-    localStorage.setItem("usuarioLogado", email); // guarda sessão
+    localStorage.setItem("usuarioLogado", email); 
     alert("Login realizado com sucesso!");
     window.location.href = "index.html";
   } else {
@@ -49,7 +49,7 @@ function login(event) {
 
   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  // procura usuário cadastrado
+
   const usuario = usuarios.find(u => u.email === email && u.senha === senha);
 
   if (usuario) {
@@ -82,7 +82,7 @@ function login(event) {
   if (usuario) {
     localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
     alert("Login realizado com sucesso!");
-    window.location.href = "desafios.html"; // 🔹 vai direto para desafios
+    window.location.href = "desafios.html"; 
   } else {
     alert("E-mail ou senha inválidos!");
   }

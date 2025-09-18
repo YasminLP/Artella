@@ -30,14 +30,14 @@
             descricao,
             semana,
             autor: user.usuario || user.nome,
-            imagem: e.target.result // salva imagem como base64
+            imagem: e.target.result //imagem 
           };
 
           trabalhos.push(novoTrabalho);
           localStorage.setItem("trabalhos", JSON.stringify(trabalhos));
 
           alert("Trabalho publicado com sucesso!");
-          window.location.href = "ver_trabalhos.html"; // 🔹 redireciona
+          window.location.href = "ver_trabalhos.html"; 
         };
         reader.readAsDataURL(imagemInput.files[0]);
       } else {

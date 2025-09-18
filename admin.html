@@ -20,13 +20,12 @@
       const descricao = document.getElementById("descricao").value.trim();
 
       if (titulo && descricao) {
-        // pega lista de desafios já salvos
+        //desafios já salvos
         let desafios = JSON.parse(localStorage.getItem("desafios")) || [];
 
-        // adiciona novo
         desafios.push({ titulo, descricao });
 
-        // salva de volta
+       
         localStorage.setItem("desafios", JSON.stringify(desafios));
 
         alert(" Desafio cadastrado com sucesso!");

@@ -13,11 +13,11 @@
         return;
       }
 
-      // Exibe dados básicos
+    
       document.getElementById("nomeUsuario").textContent = user.usuario || user.nome;
       document.getElementById("emailUsuario").textContent = user.email;
 
-      // Exibe desafios cadastrados por admin
+      //desafios cadastrados
       let desafios = JSON.parse(localStorage.getItem("desafios")) || [];
       const listaDesafios = document.getElementById("meus-desafios");
       listaDesafios.innerHTML = "";
@@ -36,7 +36,7 @@
         });
       }
 
-      // Exibe trabalhos do usuário logado
+      //trabalhos
       let trabalhos = JSON.parse(localStorage.getItem("trabalhos")) || [];
       const listaTrabalhos = document.getElementById("meus-trabalhos");
       listaTrabalhos.innerHTML = "";
