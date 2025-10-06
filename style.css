@@ -514,3 +514,29 @@ nav button {
 nav button:hover {
   background: #e76a7a;
 }
+
+/*redefinir*/
+.reset-link {
+  text-decoration: none;
+  color: #7a5656;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.reset-link:hover {
+  text-decoration: underline;
+}
+
+.login-bg {
+  background: #92cbb6; /* verde água */
+  min-height: 100vh;
+}
+
+.header-bege {
+  background: #f3d797; /* bege */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

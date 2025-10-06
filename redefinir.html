@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Redefinir Senha - Artella</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function redefinirSenha(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const novaSenha = document.getElementById("novaSenha").value;
+      const confSenha = document.getElementById("confSenha").value;
+
+      if (novaSenha !== confSenha) {
+        alert("As senhas não coincidem!");
+        return;
+      }
+
+      let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const index = usuarios.findIndex(u => u.email === email);
+
+      if (index === -1) {
+        alert("E-mail não encontrado!");
+        return;
+      }
+
+      usuarios[index].senha = novaSenha; // atualiza a senha
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+      alert("Senha redefinida com sucesso!");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body class="login-bg">
+<header class="header-bege">
+  <a href="login.html">Voltar</a>
+</header>
+
+<div class="container">
+  <img src="C:\Users\ylpaim\Pictures\Screenshots\Captura de tela 2025-08-28 140330.png" alt="Logo Artella" class="logo">
+  <h2>Redefinir Senha</h2>
+  <form onsubmit="redefinirSenha(event)">
+    <input type="email" id="email" placeholder="E-mail cadastrado" required>
+    <input type="password" id="novaSenha" placeholder="Nova senha" required>
+    <input type="password" id="confSenha" placeholder="Confirmar nova senha" required>
+    <button type="submit" class="btn-rosa">Salvar nova senha</button>
+  </form>
+</div>
+</body>
+</html>
