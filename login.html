@@ -4,23 +4,44 @@
   <meta charset="UTF-8">
   <title>Entrar - Artella</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
   <script>
+    // Authenticate against the Realtime Database 'usuarios' node
     function login(event) {
       event.preventDefault();
 
       const email = document.getElementById("loginEmail").value;
       const senha = document.getElementById("loginSenha").value;
 
-      let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-      const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+      // Read the usuarios node and look for a matching email + senha
+      db.ref('usuarios').once('value')
+        .then(snapshot => {
+          const usuariosObj = snapshot.val();
+          let usuarioEncontrado = null;
 
-      if (usuario) {
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-        alert("Login realizado com sucesso!");
-        window.location.href = "desafios.html";
-      } else {
-        alert("E-mail ou senha inválidos!");
-      }
+          if (usuariosObj) {
+            // usuariosObj is an object keyed by push ids
+            Object.values(usuariosObj).forEach(u => {
+              if (u.email === email && u.senha === senha) {
+                usuarioEncontrado = u;
+              }
+            });
+          }
+
+          if (usuarioEncontrado) {
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
+            alert("Login realizado com sucesso!");
+            window.location.href = "desafios.html";
+          } else {
+            alert("E-mail ou senha inválidos!");
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao acessar Firebase:', error);
+          alert('Erro ao acessar a base de dados. Veja o console para mais detalhes.');
+        });
     }
   </script>
 </head>
